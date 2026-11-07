@@ -1,0 +1,36 @@
+---
+// Próximas paradas de la Casita. Se toman de src/data/sitio.js.
+// Las que ya pasaron se ocultan al publicar y también en el navegador (el sitio es estático).
+import { agenda, sitio } from '../data/sitio.js';
+const hoy = new Date().toISOString().slice(0, 10);
+const proximas = agenda.filter((a) => !a.hasta || a.hasta >= hoy);
+---
+<div class="agenda">
+  {proximas.length > 0 && (
+    <ul class="agenda__lista">
+      {proximas.map((a) => (
+        <li data-hasta={a.hasta}>
+          <span class="agenda__lugar">{a.lugar}{a.comuna && `, ${a.comuna}`}</span>
+          <span>{a.fechas}{a.horario && `, de ${a.horario}`}</span>
+        </li>
+      ))}
+    </ul>
+  )}
+  <p class="agenda__instagram" data-vacia={proximas.length === 0 ? '' : undefined}>
+    {proximas.length > 0 ? 'Avisamos cada parada' : 'Anunciamos cada parada de la Casita'} en Instagram, en <a href={sitio.instagram.url}>@{sitio.instagram.usuario}</a>.
+  </p>
+</div>
+
+<script>
+  const hoy = new Date().toISOString().slice(0, 10);
+  document.querySelectorAll<HTMLElement>('.agenda [data-hasta]').forEach((li) => {
+    if (li.dataset.hasta && li.dataset.hasta < hoy) li.remove();
+  });
+</script>
+
+<style>
+  .agenda__lista { list-style: none; padding: 0; margin: 0 0 0.75rem; }
+  .agenda__lista li { display: grid; padding: 0.6rem 0; border-bottom: 1px solid var(--linea); }
+  .agenda__lista li:first-child { border-top: 1px solid var(--linea); }
+  .agenda__lugar { font-weight: 400; }
+</style>

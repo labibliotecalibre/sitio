@@ -1,0 +1,182 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import Proyecto from '../components/Proyecto.astro';
+import Estante from '../components/Estante.astro';
+import Agenda from '../components/Agenda.astro';
+import { sitio } from '../data/sitio.js';
+
+import lema from '../assets/aqui-amamos-leer.png';
+import casitaFoto from '../assets/casita-foto.jpg';
+import ilusClubes from '../assets/ilus-clubes.jpg';
+import bernardito from '../assets/bernardito-portada.png';
+import clubCartas from '../assets/club-cartas.png';
+import ilusDona from '../assets/ilus-dona.jpg';
+import gatos from '../assets/patron-gatos.jpg';
+
+const correoLibros = `mailto:${sitio.correo}?subject=${encodeURIComponent('Libros de Bernardito')}`;
+const correoDona = `mailto:${sitio.correo}?subject=${encodeURIComponent('Quiero donar libros')}`;
+---
+<Base datosEstructurados>
+  <div class="portada contenedor">
+    <figure class="portada__lema">
+      <Image
+        src={lema}
+        alt="Aquí amamos leer. Elisa lee sentada en el suelo, apoyada en su gato Bernardito, que también lee."
+        widths={[400, 700, 1080]}
+        sizes="(min-width: 60rem) 34rem, calc(100vw - 32px)"
+        loading="eager"
+        fetchpriority="high"
+      />
+    </figure>
+    <div class="portada__texto pila">
+      <h1>Una biblioteca gratuita que se instala donde está la gente</h1>
+      <p class="portada__bajada">
+        Desde {sitio.desde} recorremos Santiago y otras ciudades de Chile con la Casita de Libros: traes un libro y te llevas otro, sin pagar nada. También organizamos clubes de lectura, hacemos libros para primeras lecturas y ayudamos a que niñas y niños armen su primera biblioteca.
+      </p>
+      <div class="portada__acciones">
+        <a class="boton" href="/casita-de-libros/">Cómo funciona la Casita</a>
+        <a class="boton boton--borde" href={sitio.instagram.url}>Síguenos en Instagram</a>
+      </div>
+    </div>
+  </div>
+
+  <Proyecto
+    id="casita"
+    titulo="La Casita de Libros"
+    imagen={casitaFoto}
+    alt="La Casita de Libros en un centro comercial: una casa de madera hecha de estantes llenos de libros, con personas eligiendo."
+    encuadre="50% 40%"
+  >
+    <p>
+      Es la primera biblioteca de intercambio de Chile: una casa de madera con más de 1.200 libros que se instala por unos días en centros comerciales, plazas, parques y centros culturales. Traes un libro y te llevas otro parecido.
+    </p>
+    <ul>
+      <li>Puedes cambiar hasta cinco libros por visita.</li>
+      <li>El libro que te llevas se parece al que traes: en edición, género, antigüedad e idioma.</li>
+      <li>Recibimos solo libros originales y en buen estado.</li>
+    </ul>
+    <p><a href="/casita-de-libros/">Lee las normas de intercambio</a></p>
+    <h3 class="subtitulo">Dónde estará</h3>
+    <Agenda />
+  </Proyecto>
+
+  <Proyecto
+    id="clubes"
+    titulo="Clubes de lectura"
+    imagen={ilusClubes}
+    alt="Ilustración: una joven lee en una banca del parque; detrás, un niño lee con su mochila al lado."
+    encuadre="78% 50%"
+  >
+    <p>
+      Leemos una novela en grupo, en tres encuentros guiados por un mediador. Los cupos son pocos y, si no tienes el libro, te lo prestamos.
+    </p>
+    <p>Abrimos las inscripciones de cada club en Instagram, en <a href={sitio.instagram.url}>@{sitio.instagram.usuario}</a>.</p>
+    <Estante slot="abajo" />
+  </Proyecto>
+
+  <Proyecto
+    id="bernardito"
+    titulo="Bernardito y Elisa"
+    imagen={bernardito}
+    alt="Portada del libro «Bernardito»: un gato celeste con anteojos lee sobre una torre de libros."
+    modo="contener"
+    fondo="var(--rosa)"
+  >
+    <p>
+      Elisa está segura de que su gato, Bernardito, sabe leer: lo ha visto muy concentrado, con los ojos fijos en la página. Con ellos hicimos dos libros ilustrados para leer en familia.
+    </p>
+    <ul>
+      <li><i>Querido Bernardito</i>, para quienes todavía no leen solos.</li>
+      <li><i>Bernardito</i>, para quienes empiezan a leer.</li>
+    </ul>
+    <p class="nota">Escritos por Diego Ramírez H. e ilustrados por Carolina Venegas C.</p>
+    <p><a href={correoLibros}>Pregúntanos cómo conseguirlos</a></p>
+  </Proyecto>
+
+  <Proyecto
+    id="cartas"
+    titulo="El club de las cartas y los libros"
+    imagen={clubCartas}
+    alt="Ilustración: una niña le entrega un libro a un niño, con un gato entre ambos."
+    modo="contener"
+    fondo="var(--celeste)"
+  >
+    <p>
+      Niñas y niños de escuelas de Pudahuel escriben una carta contando qué les gusta y qué les gustaría leer. Una persona la lee, busca un libro pensado para esa carta y lo entrega con una respuesta escrita a mano.
+    </p>
+    <p>
+      No es una donación de libros: cada libro llega elegido por alguien que escuchó, y se suma a la primera biblioteca de quien lo recibe. Participan voluntarios de las empresas que se suman cada año.
+    </p>
+    <p><a href={sitio.club}>Conoce el Club</a></p>
+  </Proyecto>
+
+  <Proyecto
+    id="dona"
+    titulo="Dona tus libros"
+    imagen={ilusDona}
+    alt="Ilustración: un gato con anteojos guarda libros en una caja que dice «Donar»."
+    encuadre="55% 50%"
+  >
+    <p>
+      ¿Tienes libros que ya no vas a leer? Los recibimos para que lleguen a nuevos lectores. Desde 2018 hemos repartido gratis más de 70.000 libros en distintas ciudades del país.
+    </p>
+    <ul>
+      <li>Recibimos literatura en buen estado: novela, cuento, poesía, ensayo, libros infantiles y juveniles.</li>
+      <li>No recibimos enciclopedias, diccionarios, libros técnicos ni textos de estudio.</li>
+    </ul>
+    <p>Tráelos a cualquier parada de la Casita de Libros. Si son muchos, <a href={correoDona}>escríbenos</a> y vemos cómo hacerlos llegar.</p>
+  </Proyecto>
+
+  <Proyecto
+    id="nosotros"
+    titulo="Quiénes somos"
+    imagen={gatos}
+    alt=""
+    encuadre="30% 50%"
+  >
+    <p>
+      Somos una biblioteca gratuita e itinerante. Desde {sitio.desde} llevamos libros a lugares donde no se espera encontrarlos: centros comerciales, plazas, parques, estaciones de servicio, escuelas y universidades, en Santiago y en ciudades del centro y sur de Chile.
+    </p>
+    <p>
+      Entendemos la lectura como una experiencia social, que nos conecta con otras ideas más allá de la distancia y el tiempo. Entregar un libro es pensar en otra persona: cada libro de nuestra biblioteca puede encantar a alguien más.
+    </p>
+    <p>
+      Trabajamos solo con libros originales. Respetar el derecho de autor sostiene a quienes escriben y editan, y a la larga hace posible una industria editorial local con libros a precios accesibles.
+    </p>
+  </Proyecto>
+
+  <section class="contacto" id="contacto" aria-labelledby="contacto-titulo">
+    <div class="contenedor pila">
+      <h2 id="contacto-titulo">Escríbenos</h2>
+      <p class="contacto__correo"><a href={`mailto:${sitio.correo}`}>{sitio.correo}</a></p>
+      <p>En Instagram somos <a href={sitio.instagram.url}>@{sitio.instagram.usuario}</a>.</p>
+      <p class="medida">¿Quieres llevar la Casita de Libros o un club de lectura a tu barrio, tu escuela o tu lugar de trabajo? Cuéntanos.</p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .portada {
+    display: grid; gap: 1.25rem;
+    padding-block: 1.5rem 2.75rem;
+  }
+  .portada__lema { max-width: 34rem; }
+  .portada__bajada { font-size: 1.12rem; max-width: var(--medida); }
+  .portada__acciones { display: flex; flex-wrap: wrap; gap: 0.75rem; padding-top: 0.5rem; }
+  @media (min-width: 60rem) {
+    .portada {
+      grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+      align-items: center; gap: 3.5rem;
+      padding-block: 3.5rem 4.5rem;
+    }
+    .portada__lema { order: 2; max-width: none; }
+  }
+
+  .subtitulo { padding-top: 0.75rem; }
+
+  .contacto { background: var(--celeste); padding-block: 3rem 3.5rem; }
+  @media (min-width: 60rem) { .contacto { padding-block: 4.5rem 5rem; } }
+  .contacto__correo { font-size: clamp(1.2rem, 5.2vw, 1.9rem); font-weight: 400; overflow-wrap: anywhere; }
+  .contacto__correo a { color: var(--noche); }
+</style>

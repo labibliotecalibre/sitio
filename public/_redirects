@@ -1,0 +1,46 @@
+# Direcciones del WordPress anterior (respaldo del 7 ene 2026) hacia el sitio nuevo.
+# Las que siguen recibiendo visitas o aparecen en afiches y publicaciones de Instagram.
+
+/la-casita-de-libros       /casita-de-libros/        301
+/la-casita-de-libros/*     /casita-de-libros/        301
+/proximas-actividades      /casita-de-libros/#donde  301
+/proximas-actividades/*    /casita-de-libros/#donde  301
+/dona                      /#dona                    301
+/dona/*                    /#dona                    301
+/about                     /#nosotros                301
+/about/*                   /#nosotros                301
+/bernardito                /#bernardito              301
+/bernardito/*              /#bernardito              301
+/club-cartas-libros        https://cartas.labibliotecalibre.cl/  301
+/club-cartas-libros/*      https://cartas.labibliotecalibre.cl/  301
+
+# Clubes de lectura (una página por libro en el sitio anterior)
+/club-de-lectura/*                          /#clubes  301
+/club-de-lectura-una-educacion-mortal/*     /#clubes  301
+/club-de-lectura-tokio-blues/*              /#clubes  301
+/club-de-lectura-orgullo-y-prejuicio/*      /#clubes  301
+/club-de-lectura-dune/*                     /#clubes  301
+/club-de-lectura-rayuela/*                  /#clubes  301
+/club-de-lectura-insoportable-levedad/*     /#clubes  301
+/club-de-lectura-cumbres-borrascosas/*      /#clubes  301
+/club-de-lectura-lolita/*                   /#clubes  301
+/club-de-lectura-dorian-gray/*              /#clubes  301
+/club-de-lectura-seda/*                     /#clubes  301
+/club-de-lectura-lady-chatterley/*          /#clubes  301
+/club-de-lectura-detectives-salvajes/*      /#clubes  301
+/club-de-lectura-indigno-humano/*           /#clubes  301
+/club-de-lectura-virgenes-suicidas/*        /#clubes  301
+/club-de-lectura-conjura-necios/*           /#clubes  301
+/club-de-lectura-american-psycho/*          /#clubes  301
+/club-de-lectura-actos-humanos/*            /#clubes  301
+
+# Restos del WordPress que no pasan al sitio nuevo
+/biblioteca-en-hospitales/*  /  301
+/barbers/*                   /  301
+/gallery/*                   /  301
+/contact/*                   /#contacto  301
+/gracias/*                   /  301
+/548-2/*                     /  301
+/opt-out-preferences/*       /  301
+/inicio/*                    /  301
+/wp-content/*                /  301
