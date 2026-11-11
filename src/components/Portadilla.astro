@@ -1,6 +1,6 @@
 ---
 // La página de entrada se arma como la portadilla de un libro: el título al centro y,
-// al pie, la marca de la casa, la ciudad y cómo encontrarnos.
+// al pie, la marca de la casa y cómo encontrarnos.
 import { Image } from 'astro:assets';
 import logo from '../assets/logo-bl.png';
 import { sitio } from '../data/sitio.js';
@@ -21,10 +21,9 @@ const Titulo = nivel;
     <a href="/" class="marca" aria-label={`${sitio.nombre}, inicio`}>
       <Image src={logo} alt="" width={56} height={56} densities={[1, 2, 3]} loading="eager" />
     </a>
-    <p>{sitio.ciudad}</p>
     <ul class="contacto">
       <li><a href={`mailto:${sitio.correo}`}>{sitio.correo}</a></li>
-      <li><a href={sitio.instagram.url}>Instagram</a></li>
+      <li><a href={sitio.instagram.url} aria-label={`@${sitio.instagram.usuario} en Instagram`}>@{sitio.instagram.usuario}</a></li>
     </ul>
   </footer>
 </main>

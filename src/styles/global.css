@@ -1,12 +1,12 @@
 /* La Biblioteca Libre: página de entrada.
-   Colores de la paleta oficial. EB Garamond para el título; Roboto Ligera para el resto,
-   como en el sitio del Club. */
+   Colores elegidos por Compa (fondo celeste y letras azules, de la paleta del Club).
+   EB Garamond para el título; Roboto Ligera para el resto, como en el sitio del Club. */
 :root {
-  --fondo: #0c0b28;   /* azul noche */
-  --titulo: #ffd6be;  /* durazno */
-  --texto: #badbed;   /* celeste */
-  --filete: #ff9f7b;  /* salmón */
-  color-scheme: dark;
+  --fondo: #c9dfee;   /* celeste */
+  --titulo: #536082;  /* azul */
+  --texto: #536082;
+  --filete: #ee906a;  /* salmón del Club */
+  color-scheme: light;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -27,5 +27,5 @@ img { display: block; max-width: 100%; height: auto; }
 p, h1 { margin: 0; }
 
 a { color: inherit; text-decoration: none; background-image: linear-gradient(currentColor, currentColor); background-size: 100% 1px; background-position: 0 100%; background-repeat: no-repeat; padding-bottom: 2px; }
-a:hover { color: var(--titulo); }
+a:hover { background-size: 100% 2px; }
 a:focus-visible { outline: 2px solid var(--filete); outline-offset: 4px; border-radius: 2px; }

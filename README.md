@@ -1,6 +1,6 @@
 # La Biblioteca Libre · labibliotecalibre.cl
 
-Sitio principal de Biblioteca Libre. Hoy es una página de entrada: «Nos encontramos leyendo», con el logo, la ciudad, el correo y el Instagram. El sitio completo, con los proyectos, está en preparación en la rama `beta-completo`.
+Sitio principal de Biblioteca Libre. Hoy es una página de entrada: «Nos encontramos leyendo», con el logo, el correo y el Instagram. El sitio completo, con los proyectos, está en preparación en la rama `beta-completo`.
 
 Es un sitio estático hecho con Astro. A diferencia del sitio del Club (cartas.labibliotecalibre.cl), este sí está abierto a los buscadores.
 
@@ -21,9 +21,9 @@ npm run build
 
 ## Qué se cambia y dónde
 
-- `src/data/sitio.js`: título, bajada, descripción para buscadores, correo e Instagram.
-- `src/components/Portadilla.astro`: la composición (título, filete y pie con logo, ciudad y contacto).
-- `src/styles/global.css`: colores. Todos son de la paleta oficial: fondo azul noche #0c0b28, título durazno #ffd6be, texto celeste #badbed y filete salmón #ff9f7b.
+- `src/data/sitio.js`: título, descripción para buscadores, correo e Instagram.
+- `src/components/Portadilla.astro`: la composición (título, filete y pie con logo y contacto).
+- `src/styles/global.css`: colores: fondo celeste #c9dfee, letras azules #536082 (elegidos por Compa, de la paleta del Club) y filete salmón #ee906a.
 - `public/og.jpg`: la imagen que aparece al compartir el enlace (1200 × 630).
 
 Tipografía: EB Garamond para el título; Roboto Ligera para el resto, como en el sitio del Club. Las dos fuentes van alojadas en el propio sitio.
