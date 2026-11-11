@@ -1,14 +1,22 @@
 ---
 import Base from '../layouts/Base.astro';
+import Portadilla from '../components/Portadilla.astro';
+import { sitio } from '../data/sitio.js';
 ---
-<Base titulo="Página no encontrada · La Biblioteca Libre">
-  <div class="contenedor pila vacia">
-    <h1>Esta página no está</h1>
-    <p>Puede que la dirección haya cambiado con el sitio nuevo. Desde el inicio llegas a la Casita de Libros, los clubes de lectura y todo lo demás.</p>
-    <p><a class="boton" href="/">Ir al inicio</a></p>
-  </div>
+<Base titulo={`Página no encontrada · ${sitio.nombre}`} indexar={false}>
+  <Portadilla titulo="Esta página ya no está" nivel="h1">
+    <p class="volver">Estamos armando un sitio nuevo. <a href="/">Volver al inicio</a></p>
+  </Portadilla>
 </Base>
 
+<script is:inline>
+  // Direcciones del sitio anterior que tienen un destino nuevo.
+  (function () {
+    var ruta = location.pathname.replace(/\/+$/, '');
+    if (ruta === '/club-cartas-libros') location.replace('https://cartas.labibliotecalibre.cl/');
+  })();
+</script>
+
 <style>
-  .vacia { padding-block: 4rem 5rem; max-width: 36rem; }
+  .volver { font-size: 1rem; }
 </style>

@@ -1,82 +1,31 @@
-/* La Biblioteca Libre: sitio principal.
-   Paleta oficial de Biblioteca Libre; Roboto Ligera para leer, Normal para destacar, sin negrita
-   (mismos criterios que el sitio del Club). */
+/* La Biblioteca Libre: página de entrada.
+   Colores de la paleta oficial. EB Garamond para el título; Roboto Ligera para el resto,
+   como en el sitio del Club. */
 :root {
-  --tinta: #3f5178;
-  --noche: #0c0b28;
-  --azul-medio: #6f81a5;
-  --durazno: #ffd6be;
-  --salmon: #ff9f7b;
-  --rojo: #f1461c;
-  --rosado: #fe868f;
-  --rosa: #fed6d9;
-  --celeste: #badbed;
-  --pistacho: #c7d691;
-  --pistacho-claro: #dceca4;
-  --papel: #ffffff;
-  --linea: #dfe3ec;
-  --madera: #e8bf98;
-  --ancho: 70rem;
-  --medida: 34rem;
-  --radio: 6px;
-  color-scheme: light;
+  --fondo: #0c0b28;   /* azul noche */
+  --titulo: #ffd6be;  /* durazno */
+  --texto: #badbed;   /* celeste */
+  --filete: #ff9f7b;  /* salmón */
+  color-scheme: dark;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; scroll-padding-top: 1rem; -webkit-text-size-adjust: 100%; }
-@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
-
+html { -webkit-text-size-adjust: 100%; background: var(--fondo); }
 body {
   margin: 0;
-  background: var(--papel);
-  color: var(--tinta);
+  min-height: 100vh;
+  min-height: 100svh;
+  background: var(--fondo);
+  color: var(--texto);
   font-family: 'Roboto', system-ui, -apple-system, 'Segoe UI', sans-serif;
   font-weight: 300;
-  font-size: 1.0625rem;
-  line-height: 1.65;
+  font-size: 1rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
 }
-
 img { display: block; max-width: 100%; height: auto; }
-h1, h2, h3 { margin: 0; font-weight: 400; line-height: 1.15; color: var(--tinta); text-wrap: balance; }
-h1 { font-size: clamp(2rem, 7.2vw, 3.15rem); letter-spacing: -0.015em; }
-h2 { font-size: clamp(1.65rem, 4.6vw, 2.25rem); letter-spacing: -0.01em; }
-h3 { font-size: 1.125rem; }
-p, ul, ol, dl, figure { margin: 0; }
-strong, b { font-weight: 400; }
+p, h1 { margin: 0; }
 
-a { color: var(--tinta); text-decoration-thickness: 1px; text-underline-offset: 0.2em; }
-a:hover { color: var(--noche); text-decoration-thickness: 2px; }
-a:focus-visible, button:focus-visible, [tabindex]:focus-visible {
-  outline: 3px solid var(--rojo);
-  outline-offset: 3px;
-  border-radius: 2px;
-}
-
-.contenedor { max-width: var(--ancho); margin-inline: auto; padding-inline: 16px; }
-@media (min-width: 48rem) { .contenedor { padding-inline: 2rem; } }
-
-.pila > * + * { margin-top: 1rem; }
-.medida { max-width: var(--medida); }
-
-.boton {
-  display: inline-flex; align-items: center; justify-content: center;
-  min-height: 48px; padding: 0.75rem 1.35rem;
-  border-radius: 999px; border: 0;
-  background: var(--tinta); color: #fff;
-  font: inherit; font-weight: 400; font-size: 1rem; line-height: 1.2;
-  text-decoration: none; cursor: pointer;
-}
-.boton:hover { background: var(--noche); color: #fff; }
-.boton--borde { background: transparent; color: var(--tinta); box-shadow: inset 0 0 0 1.5px var(--tinta); }
-.boton--borde:hover { background: var(--rosa); color: var(--noche); }
-
-.sr-only {
-  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
-  overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
-}
-
-.saltar {
-  position: absolute; left: 16px; top: -4rem; z-index: 10;
-  background: var(--noche); color: #fff; padding: 0.6rem 1rem; border-radius: var(--radio);
-}
-.saltar:focus { top: 0.75rem; color: #fff; }
+a { color: inherit; text-decoration: none; background-image: linear-gradient(currentColor, currentColor); background-size: 100% 1px; background-position: 0 100%; background-repeat: no-repeat; padding-bottom: 2px; }
+a:hover { color: var(--titulo); }
+a:focus-visible { outline: 2px solid var(--filete); outline-offset: 4px; border-radius: 2px; }

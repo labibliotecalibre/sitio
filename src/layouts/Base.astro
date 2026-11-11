@@ -1,21 +1,14 @@
 ---
+import '@fontsource/eb-garamond/latin-400.css';
 import '@fontsource/roboto/latin-300.css';
 import '@fontsource/roboto/latin-400.css';
 import '../styles/global.css';
-import { Image } from 'astro:assets';
-import logo from '../assets/logo-bl.png';
 import { sitio } from '../data/sitio.js';
 
-interface Props { titulo?: string; descripcion?: string; datosEstructurados?: boolean }
-const {
-  titulo = `${sitio.nombre} · Casita de Libros, clubes de lectura y libros para niños`,
-  descripcion = sitio.descripcion,
-  datosEstructurados = false,
-} = Astro.props;
+interface Props { titulo?: string; descripcion?: string; indexar?: boolean }
+const { titulo = sitio.nombre, descripcion = sitio.descripcion, indexar = true } = Astro.props;
 const canonica = new URL(Astro.url.pathname, sitio.url).href;
 const imagenSocial = new URL('/og.jpg', sitio.url).href;
-const enInicio = Astro.url.pathname === '/';
-const pre = enInicio ? '' : '/';
 
 const organizacion = {
   '@context': 'https://schema.org',
@@ -26,7 +19,6 @@ const organizacion = {
   email: sitio.correo,
   foundingDate: String(sitio.desde),
   areaServed: 'Chile',
-  slogan: sitio.lema,
   sameAs: [sitio.instagram.url],
 };
 ---
@@ -37,89 +29,26 @@ const organizacion = {
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>{titulo}</title>
   <meta name="description" content={descripcion} />
-  <link rel="canonical" href={canonica} />
-  <meta name="theme-color" content="#ffffff" />
+  {indexar ? <link rel="canonical" href={canonica} /> : <meta name="robots" content="noindex" />}
+  <meta name="theme-color" content="#0c0b28" />
   <link rel="icon" href="/favicon.png" type="image/png" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-  <link rel="sitemap" href="/sitemap-index.xml" />
 
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="es_CL" />
   <meta property="og:site_name" content={sitio.nombre} />
-  <meta property="og:title" content={titulo} />
+  <meta property="og:title" content={`${sitio.nombre}: ${sitio.titulo.toLowerCase()}`} />
   <meta property="og:description" content={descripcion} />
   <meta property="og:url" content={canonica} />
   <meta property="og:image" content={imagenSocial} />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="Aquí amamos leer. Ilustración de Elisa y su gato Bernardito leyendo." />
+  <meta property="og:image:alt" content={`${sitio.titulo}. ${sitio.nombre}.`} />
   <meta name="twitter:card" content="summary_large_image" />
 
-  {datosEstructurados && <script type="application/ld+json" set:html={JSON.stringify(organizacion)} />}
+  {indexar && <script type="application/ld+json" set:html={JSON.stringify(organizacion)} />}
 </head>
 <body>
-  <a class="saltar" href="#contenido">Ir al contenido</a>
-  <header class="cabecera">
-    <div class="contenedor cabecera__fila">
-      <a href="/" class="cabecera__logo">
-        <Image src={logo} alt={`${sitio.nombre}, inicio`} width={56} height={56} densities={[1, 2, 3]} loading="eager" />
-      </a>
-      <nav aria-label="Secciones">
-        <ul class="menu">
-          <li><a href="/casita-de-libros/">Casita de Libros</a></li>
-          <li><a href={`${pre}#clubes`}>Clubes de lectura</a></li>
-          <li><a href={`${pre}#bernardito`}>Bernardito</a></li>
-          <li><a href={`${pre}#cartas`}>Club de cartas</a></li>
-          <li><a href={`${pre}#dona`}>Dona tus libros</a></li>
-          <li><a href={`${pre}#contacto`}>Contacto</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-
-  <main id="contenido">
-    <slot />
-  </main>
-
-  <footer class="pie">
-    <div class="contenedor pie__fila">
-      <Image src={logo} alt="" width={64} height={64} densities={[1, 2]} class="pie__logo" />
-      <div class="pie__texto">
-        <p>{sitio.nombre}. Santiago de Chile, desde {sitio.desde}.</p>
-        <p>
-          <a href={`mailto:${sitio.correo}`}>{sitio.correo}</a>
-          <span aria-hidden="true"> / </span>
-          <a href={sitio.instagram.url}>Instagram</a>
-        </p>
-      </div>
-    </div>
-  </footer>
+  <slot />
 </body>
 </html>
-
-<style>
-  .cabecera { border-bottom: 1px solid var(--linea); }
-  .cabecera__fila {
-    display: flex; flex-wrap: wrap; align-items: center;
-    column-gap: 2rem; row-gap: 0.6rem; padding-block: 0.9rem;
-  }
-  .cabecera__logo { flex: none; line-height: 0; border-radius: 3px; }
-  .cabecera__logo img { width: 56px; height: 56px; }
-  nav { flex: 1 1 18rem; }
-  .menu {
-    list-style: none; padding: 0;
-    display: flex; flex-wrap: wrap; column-gap: 1.1rem; row-gap: 0.15rem;
-    font-size: 0.97rem;
-  }
-  .menu a { text-decoration: none; display: inline-block; padding-block: 0.3rem; }
-  .menu a:hover { text-decoration: underline; }
-  @media (min-width: 60rem) {
-    nav { flex: none; margin-left: auto; }
-    .menu { column-gap: 1.6rem; }
-  }
-
-  .pie { border-top: 1px solid var(--linea); padding-block: 2rem 2.5rem; margin-top: 1rem; font-size: 0.95rem; }
-  .pie__fila { display: flex; gap: 1rem; align-items: center; }
-  .pie__logo { width: 56px; height: 56px; flex: none; }
-  .pie__texto > * + * { margin-top: 0.15rem; }
-</style>

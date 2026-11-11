@@ -1,43 +1,39 @@
 # La Biblioteca Libre · labibliotecalibre.cl
 
-Sitio principal de Biblioteca Libre. Reemplaza al WordPress anterior. Es un sitio estático hecho con Astro y se publica en Netlify desde este repositorio. A diferencia del sitio del Club (cartas.labibliotecalibre.cl), este sí está abierto a los buscadores.
+Sitio principal de Biblioteca Libre. Hoy es una página de entrada: «Nos encontramos leyendo», con el logo, la ciudad, el correo y el Instagram. El sitio completo, con los proyectos, está en preparación en la rama `beta-completo`.
 
-## Páginas
+Es un sitio estático hecho con Astro. A diferencia del sitio del Club (cartas.labibliotecalibre.cl), este sí está abierto a los buscadores.
 
-- `/`: portada con los proyectos (Casita de Libros, clubes de lectura, Bernardito y Elisa, Club de cartas, Dona tus libros), quiénes somos y contacto.
-- `/casita-de-libros/`: normas de intercambio y dónde estará la Casita.
-- `404`: página para direcciones que no existen.
+## Dónde se publica
+
+En **GitHub Pages**, desde la rama `gh-pages`, que contiene el sitio ya construido (la carpeta `dist`). No usa Netlify, para no gastar los créditos que necesita el sitio del Club.
+
+- `public/CNAME` fija el dominio: labibliotecalibre.cl.
+- `public/.nojekyll` evita que GitHub ignore la carpeta `_astro`.
+
+Para publicar un cambio:
+
+```
+npm ci
+npm run build
+# copiar dist/ a la rama gh-pages y subirla
+```
 
 ## Qué se cambia y dónde
 
-- `src/data/sitio.js`: correo, Instagram, enlace al Club y la **agenda de la Casita**. Si la agenda está vacía, el sitio remite a Instagram. Cada parada lleva una fecha `hasta`; cuando pasa esa fecha, la parada deja de mostrarse sola.
-- `src/data/lecturas.js`: libros leídos en los clubes de lectura (el estante de la portada).
-- `src/pages/index.astro` y `src/pages/casita-de-libros.astro`: textos.
-- `src/assets/`: imágenes. Astro las convierte a WebP en varios tamaños al publicar.
-- `public/_redirects`: direcciones del WordPress anterior que llevan al sitio nuevo (Casita, Dona tus libros, páginas de clubes de lectura, Club de cartas).
+- `src/data/sitio.js`: título, bajada, descripción para buscadores, correo e Instagram.
+- `src/components/Portadilla.astro`: la composición (título, filete y pie con logo, ciudad y contacto).
+- `src/styles/global.css`: colores. Todos son de la paleta oficial: fondo azul noche #0c0b28, título durazno #ffd6be, texto celeste #badbed y filete salmón #ff9f7b.
+- `public/og.jpg`: la imagen que aparece al compartir el enlace (1200 × 630).
 
-## Origen del material
+Tipografía: EB Garamond para el título; Roboto Ligera para el resto, como en el sitio del Club. Las dos fuentes van alojadas en el propio sitio.
 
-Los textos y las ilustraciones de sección vienen del respaldo del WordPress (7 ene 2026), con edición ligera. Las ilustraciones de Elisa y Bernardito del Club (`club-cartas.png`) vienen del repositorio `club-cartas`.
+## Dominio (DNS en Hostinger)
 
-No se publican cartas de niños ni fotos donde se reconozcan niños.
+Para que labibliotecalibre.cl muestre este sitio:
 
-## Trabajar en local
+- **A @**: 185.199.108.153, 185.199.109.153, 185.199.110.153 y 185.199.111.153 (reemplazan al 5.183.10.201 del WordPress).
+- **AAAA @**: se borra el de Hostinger.
+- **CNAME www**: labibliotecalibre.github.io
 
-```
-npm install
-npm run dev      # http://localhost:4321
-npm run build    # genera dist/
-```
-
-## Publicación
-
-Netlify toma la configuración de `netlify.toml` (comando `npm run build`, carpeta `dist`, Node 22).
-
-Para pasar el dominio a Netlify se cambian solo estos registros en el panel DNS de Hostinger:
-
-- el A de `@`, al valor que indique Netlify;
-- el AAAA de `@`, que se borra;
-- el CNAME de `www`.
-
-El CNAME `cartas` y el TXT de verificación son del Club y no se tocan.
+El CNAME `cartas`, el TXT de verificación de Netlify y los registros de correo no se tocan.
